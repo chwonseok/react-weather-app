@@ -1,10 +1,28 @@
 import styled from 'styled-components';
 
-export const WeatherInfoIcons = {
+const WeatherInfoIcons = {
   Sunrise: '/icons/temp.svg',
+  Sunset: '/icons/temp.svg',
   Humidity: '/icons/humidity.svg',
   Wind: '/icons/wind.svg',
   Pressure: '/icons/pressure.svg',
+};
+
+const WeatherIcons = {
+  '01d': '/icons/sunny.svg',
+  '01n': '/icons/night.svg',
+  '02d': '/icons/day.svg',
+  '02n': '/icons/cloudy-night.svg',
+  '03d': '/icons/cloudy.svg',
+  '03n': '/icons/cloudy.svg',
+  '04d': '/icons/perfect-day.svg',
+  '04n': '/icons/cloudy-night.svg',
+  '09d': '/icons/rain.svg',
+  '09n': '/icons/rain-night.svg',
+  '10d': '/icons/rain.svg',
+  '10n': '/icons/rain-night.svg',
+  '11d': '/icons/storm.svg',
+  '11n': '/icons/storm.svg',
 };
 
 const WeatherCondition = styled.div`
@@ -88,22 +106,37 @@ function WeatherInfoComponent({ name, value }) {
   );
 }
 
-export default function WeatherComponent() {
+export default function WeatherComponent({ data }) {
+  const isDay = data?.weather[0]?.icon?.includes('d');
+
+  const getTime = (timeStamp) => {
+    return `${new Date(timeStamp * 1000).getHours()} : ${new Date(
+      timeStamp * 1000
+    ).getMinutes()}`;
+  };
+
+  console.log(data);
   return (
     <>
       <WeatherCondition>
         <Temperature>
-          <span>16C </span> Sunny
+          <span>{`${Math.floor(data?.main?.temp - 273)}°C`} </span>{' '}
+          {data?.weather[0].description}
         </Temperature>
-        <WeatherLogo src="/icons/perfect-day.svg" />
+        <WeatherLogo src={WeatherIcons[data.weather[0].icon]} />
       </WeatherCondition>
-      <Location>Daegu, KR</Location>
+      <Location>
+        {data?.name}, {data?.sys?.country}
+      </Location>
       <WeatherInfoLabel>weather info</WeatherInfoLabel>
       <WeatherInfoContainer>
-        <WeatherInfoComponent name={'Sunrise'} value={1234} />
-        <WeatherInfoComponent name={'Humidity'} value={1234} />
-        <WeatherInfoComponent name={'Wind'} value={1234} />
-        <WeatherInfoComponent name={'Pressure'} value={1234} />
+        <WeatherInfoComponent
+          name={isDay ? 'Sunset' : 'Sunrise'}
+          value={getTime(isDay ? data.sys.sunset : data.sys.sunrise)}
+        />
+        <WeatherInfoComponent name={'Humidity'} value={data?.main?.humidity} />
+        <WeatherInfoComponent name={'Wind'} value={data?.wind?.speed} />
+        <WeatherInfoComponent name={'Pressure'} value={data?.main?.pressure} />
       </WeatherInfoContainer>
     </>
   );

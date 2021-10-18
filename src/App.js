@@ -44,7 +44,7 @@ function App() {
       <Label>Weather Finder</Label>
 
       {weatherData ? (
-        <WeatherComponent />
+        <WeatherComponent data={weatherData} />
       ) : (
         <CityComponent setCity={setCity} fetchWeather={fetchWeather} />
       )}
