@@ -136,7 +136,7 @@ export default function WeatherComponent({ data }) {
     <>
       <WeatherCondition>
         <Temperature>
-          <span>{`${Math.floor(data?.main?.temp - 273)}°C`} </span>{' '}
+          <span>{`${Math.floor(data?.main?.temp)}°C`} </span>{' '}
           {data?.weather[0].description}
         </Temperature>
         <WeatherLogo
