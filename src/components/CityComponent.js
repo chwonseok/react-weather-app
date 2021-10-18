@@ -51,7 +51,7 @@ const SearchBox = styled.form`
 export default function CityComponent({ setCity, fetchWeather }) {
   return (
     <>
-      <WeatherLogo src="/icons/perfect-day.svg" />
+      <WeatherLogo src={process.env.PUBLIC_URL + '/icons/perfect-day.svg'} />
       <ChooseCityMsg>Find Weather of Your City</ChooseCityMsg>
       <SearchBox onSubmit={fetchWeather}>
         <input

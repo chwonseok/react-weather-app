@@ -114,7 +114,7 @@ const Restart = styled.button`
 function WeatherInfoComponent({ name, value }) {
   return (
     <InfoContainer>
-      <InfoIcon src={WeatherInfoIcons[name]} />
+      <InfoIcon src={process.env.PUBLIC_URL + WeatherInfoIcons[name]} />
       <InfoLabel>
         <span>{name}</span>
         {value}
@@ -132,7 +132,6 @@ export default function WeatherComponent({ data }) {
     ).getMinutes()}`;
   };
 
-  console.log(data);
   return (
     <>
       <WeatherCondition>
@@ -140,7 +139,9 @@ export default function WeatherComponent({ data }) {
           <span>{`${Math.floor(data?.main?.temp - 273)}°C`} </span>{' '}
           {data?.weather[0].description}
         </Temperature>
-        <WeatherLogo src={WeatherIcons[data.weather[0].icon]} />
+        <WeatherLogo
+          src={process.env.PUBLIC_URL + WeatherIcons[data.weather[0].icon]}
+        />
       </WeatherCondition>
       <Location>
         {data?.name}, {data?.sys?.country}
