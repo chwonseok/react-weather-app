@@ -48,14 +48,14 @@ const SearchBox = styled.form`
   }
 `;
 
-export default function CityComponent({ getCity }) {
+export default function CityComponent({ setCity, fetchWeather }) {
   return (
     <>
       <WeatherLogo src="/icons/perfect-day.svg" />
       <ChooseCityMsg>Find Weather of Your City</ChooseCityMsg>
-      <SearchBox>
+      <SearchBox onSubmit={fetchWeather}>
         <input
-          onChange={(e) => getCity(e.target.value)}
+          onChange={(e) => setCity(e.target.value)}
           type="text"
           placeholder="Name of City"
         />
