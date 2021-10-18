@@ -127,9 +127,11 @@ export default function WeatherComponent({ data }) {
   const isDay = data?.weather[0]?.icon?.includes('d');
 
   const getTime = (timeStamp) => {
-    return `${new Date(timeStamp * 1000).getHours()} : ${new Date(
-      timeStamp * 1000
-    ).getMinutes()}`;
+    console.log(timeStamp);
+    const hr = new Date(timeStamp * 1000).getHours();
+    const min = new Date(timeStamp * 1000).getMinutes();
+
+    return `${hr < 10 ? '0' + hr : hr} : ${min < 10 ? '0' + min : min}`;
   };
 
   return (
