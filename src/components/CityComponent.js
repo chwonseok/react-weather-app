@@ -17,13 +17,11 @@ const SearchBox = styled.form`
   margin: 20px auto;
 
   border: 1px solid #035956;
-  /* border-radius: 5px; */
 
   & input {
     outline: none;
     border: 1px solid #035956;
     border-right: none;
-    /* border-radius: 5px; */
 
     padding: 5px;
 
@@ -50,14 +48,18 @@ const SearchBox = styled.form`
   }
 `;
 
-export default function CityComponent() {
+export default function CityComponent({ getCity }) {
   return (
     <>
       <WeatherLogo src="/icons/perfect-day.svg" />
       <ChooseCityMsg>Find Weather of Your City</ChooseCityMsg>
       <SearchBox>
-        <input type="text" placeholder="Name of City" />
-        <button>search</button>
+        <input
+          onChange={(e) => getCity(e.target.value)}
+          type="text"
+          placeholder="Name of City"
+        />
+        <button type="submit">search</button>
       </SearchBox>
     </>
   );

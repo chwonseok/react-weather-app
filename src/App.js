@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import CityComponent from './components/CityComponent';
 import WeatherComponent from './components/WeatherComponent';
@@ -9,6 +10,7 @@ const Container = styled.div`
   align-items: center;
 
   width: 375px; // for both PC and Mobile
+  background: #fff;
   padding: 15px 5px;
   border-radius: 5px;
 
@@ -18,17 +20,18 @@ const Container = styled.div`
 const Label = styled.div`
   color: #000;
 
-  font-family: 'Montserrat Alternates', sans-serif;
-  font-size: 2rem;
+  font-size: 35px;
   font-weight: 700;
 `;
 
 function App() {
+  const [city, setCity] = useState('');
+  console.log(city);
   return (
     <Container>
       <Label>Weather Finder</Label>
-      {/* <CityComponent /> */}
-      <WeatherComponent />
+      <CityComponent getCity={setCity} />
+      {/* <WeatherComponent /> */}
     </Container>
   );
 }
