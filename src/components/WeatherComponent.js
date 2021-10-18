@@ -94,6 +94,23 @@ const InfoLabel = styled.p`
   }
 `;
 
+const Restart = styled.button`
+  margin-top: 15px;
+
+  border: none;
+  color: #fff;
+  background: #035956;
+
+  font-size: 20px;
+  padding: 5px 15px;
+  border-radius: 5px;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+`;
+
 function WeatherInfoComponent({ name, value }) {
   return (
     <InfoContainer>
@@ -138,6 +155,9 @@ export default function WeatherComponent({ data }) {
         <WeatherInfoComponent name={'Wind'} value={data?.wind?.speed} />
         <WeatherInfoComponent name={'Pressure'} value={data?.main?.pressure} />
       </WeatherInfoContainer>
+      <Restart type="button" onClick={() => window.location.reload()}>
+        Restart
+      </Restart>
     </>
   );
 }

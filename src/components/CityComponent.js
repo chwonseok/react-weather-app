@@ -57,7 +57,7 @@ export default function CityComponent({ setCity, fetchWeather }) {
         <input
           onChange={(e) => setCity(e.target.value)}
           type="text"
-          placeholder="Name of City"
+          placeholder="English Name of City"
         />
         <button type="submit">search</button>
       </SearchBox>
