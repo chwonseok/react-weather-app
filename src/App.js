@@ -12,7 +12,7 @@ const Container = styled.div`
   margin: auto;
   align-items: center;
 
-  width: 375px; // for both PC and Mobile
+  width: 310px; // for both PC and Mobile
   background: #fff;
   padding: 15px 5px;
   border-radius: 5px;

@@ -27,7 +27,7 @@ const WeatherIcons = {
 
 const WeatherCondition = styled.div`
   width: 100%;
-  margin: 30px auto;
+  margin: 2rem auto;
 
   display: flex;
   align-items: center;
@@ -127,7 +127,6 @@ export default function WeatherComponent({ data }) {
   const isDay = data?.weather[0]?.icon?.includes('d');
 
   const getTime = (timeStamp) => {
-    console.log(timeStamp);
     const hr = new Date(timeStamp * 1000).getHours();
     const min = new Date(timeStamp * 1000).getMinutes();
 
